@@ -21,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`${notoSansKr.variable} font-sans antialiased`}>
         <Header />
-        {children}
+        <div className="pt-17">{children}</div>
         <Footer />
       </body>
     </html>
