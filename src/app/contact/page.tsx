@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Banner from "@/components/Banner";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface ContactFormData {
   name: string;
@@ -101,10 +103,30 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
+      try {
+        await addDoc(collection(db, "inquiries"), {
+          ...formData,
+          createdAt: serverTimestamp(),
+        });
+
+        alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
+
+        // 폼 초기화
+        setFormData({
+          name: "",
+          organization: "",
+          position: "",
+          phone: "",
+          email: "",
+          content: "",
+          privacyAgreed: false,
+        });
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("문의 접수 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      }
     }
   };
 
