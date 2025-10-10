@@ -1,9 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import { auth } from "@/lib/firebase";
-import { db } from "@/lib/firebase";
+import {
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  Timestamp,
+} from "firebase/firestore";
+import { db, auth } from "@/lib/firebase";
 
 interface Inquiry {
   id: string;
@@ -13,7 +18,7 @@ interface Inquiry {
   phone: string;
   email: string;
   content: string;
-  createdAt: any;
+  createdAt: Timestamp;
 }
 
 export default function InquiryList() {
@@ -25,7 +30,6 @@ export default function InquiryList() {
     fetchInquiries();
   }, []);
 
-  // fetchInquiries 함수 부분만 수정
   const fetchInquiries = async () => {
     try {
       setLoading(true);
@@ -46,22 +50,26 @@ export default function InquiryList() {
         return {
           id: doc.id,
           ...docData,
-        };
-      }) as Inquiry[];
+        } as Inquiry;
+      });
 
       console.log("✓ 변환 완료된 데이터 총", data.length, "개");
       setInquiries(data);
-    } catch (error: any) {
+    } catch (error) {
       console.error("❌ 문의 데이터 로딩 실패:", error);
-      console.error("에러 코드:", error.code);
-      console.error("에러 메시지:", error.message);
 
-      // 더 구체적인 에러 메시지
+      if (error instanceof Error) {
+        console.error("에러 메시지:", error.message);
+      }
+
+      // Firebase 에러인 경우
+      const firebaseError = error as { code?: string; message?: string };
+
       let errorMessage = "문의 데이터를 불러오는데 실패했습니다.";
-      if (error.code === "permission-denied") {
+      if (firebaseError.code === "permission-denied") {
         errorMessage =
           "데이터 접근 권한이 없습니다. Firestore 보안 규칙을 확인해주세요.";
-      } else if (error.code === "unavailable") {
+      } else if (firebaseError.code === "unavailable") {
         errorMessage = "네트워크 연결을 확인해주세요.";
       }
 
@@ -71,7 +79,7 @@ export default function InquiryList() {
     }
   };
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp | null) => {
     if (!timestamp) return "-";
     const date = timestamp.toDate();
     return new Intl.DateTimeFormat("ko-KR", {
