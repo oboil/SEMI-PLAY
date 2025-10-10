@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { auth } from "@/lib/firebase";
 import { db } from "@/lib/firebase";
 
 interface Inquiry {
@@ -24,24 +25,47 @@ export default function InquiryList() {
     fetchInquiries();
   }, []);
 
+  // fetchInquiries 함수 부분만 수정
   const fetchInquiries = async () => {
     try {
-      console.log("Firestore에서 데이터 가져오기 시작...");
+      setLoading(true);
+      console.log("=== Firestore 데이터 가져오기 시작 ===");
+      console.log("현재 인증 사용자:", auth.currentUser?.email);
+
       const q = query(
         collection(db, "inquiries"),
         orderBy("createdAt", "desc")
       );
+
       const querySnapshot = await getDocs(q);
-      console.log("가져온 문서 수:", querySnapshot.size);
-      const data = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Inquiry[];
-      console.log("변환된 데이터:", data);
+      console.log("✓ 가져온 문서 수:", querySnapshot.size);
+
+      const data = querySnapshot.docs.map((doc) => {
+        const docData = doc.data();
+        console.log("문서 ID:", doc.id, "데이터:", docData);
+        return {
+          id: doc.id,
+          ...docData,
+        };
+      }) as Inquiry[];
+
+      console.log("✓ 변환 완료된 데이터 총", data.length, "개");
       setInquiries(data);
-    } catch (error) {
-      console.error("문의 데이터 로딩 실패:", error);
-      alert("문의 데이터를 불러오는데 실패했습니다. 콘솔을 확인해주세요.");
+    } catch (error: any) {
+      console.error("❌ 문의 데이터 로딩 실패:", error);
+      console.error("에러 코드:", error.code);
+      console.error("에러 메시지:", error.message);
+
+      // 더 구체적인 에러 메시지
+      let errorMessage = "문의 데이터를 불러오는데 실패했습니다.";
+      if (error.code === "permission-denied") {
+        errorMessage =
+          "데이터 접근 권한이 없습니다. Firestore 보안 규칙을 확인해주세요.";
+      } else if (error.code === "unavailable") {
+        errorMessage = "네트워크 연결을 확인해주세요.";
+      }
+
+      alert(errorMessage + "\n\n개발자 콘솔을 확인해주세요.");
     } finally {
       setLoading(false);
     }

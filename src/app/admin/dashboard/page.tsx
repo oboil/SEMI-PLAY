@@ -12,14 +12,18 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Firebase Auth 상태 확인
+    console.log("=== 대시보드: 인증 상태 확인 시작 ===");
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(
+        "인증 상태 변경:",
+        user ? `로그인됨 (${user.email})` : "로그아웃됨"
+      );
+
       if (user) {
-        // 로그인되어 있음
         setIsAuthenticated(true);
         setIsLoading(false);
       } else {
-        // 로그인 안 되어 있음 -> 로그인 페이지로
+        console.log("인증되지 않음 - 로그인 페이지로 이동");
         router.push("/admin");
       }
     });
@@ -31,7 +35,10 @@ export default function DashboardPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-center items-center py-12">
-          <p className="text-gray-500">인증 확인 중...</p>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-500">인증 확인 중...</p>
+          </div>
         </div>
       </div>
     );
@@ -43,7 +50,12 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-black">문의 관리</h1>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-black">문의 관리</h1>
+        <p className="text-sm text-gray-500 mt-1">
+          접수된 문의를 확인하고 관리할 수 있습니다.
+        </p>
+      </div>
       <InquiryList />
     </div>
   );
