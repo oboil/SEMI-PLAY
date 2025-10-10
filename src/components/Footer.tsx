@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { MessageCircle, Phone, Mail, Instagram } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -51,8 +52,16 @@ export default function Footer() {
         </div>
 
         {/* 저작권 정보 */}
-        <div className="text-[#797979] text-sm">
-          Copyright 2025. SEMI PLAY. all rights reserved
+        <div className="flex items-center justify-between">
+          <div className="text-[#797979] text-sm">
+            Copyright 2025. SEMI PLAY. all rights reserved
+          </div>
+          <Link
+            href="/admin"
+            className="text-[#797979] text-sm hover:text-black transition-colors"
+          >
+            관리자
+          </Link>
         </div>
       </div>
     </footer>
