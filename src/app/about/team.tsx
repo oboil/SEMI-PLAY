@@ -5,13 +5,41 @@ import Image from "next/image";
 
 export default function Team() {
   const teamMembers = [
-    { name: "구나연", role: "팀원" },
-    { name: "김민교", role: "팀원" },
-    { name: "김주영", role: "팀원" },
-    { name: "박미소", role: "팀원" },
-    { name: "어성진", role: "팀원" },
-    { name: "윤선웅", role: "팀원" },
+    { name: "윤선웅", role: "대표", major: "지능형반도체공학과" },
+    { name: "김주영", role: "교육", major: "지능형반도체공학과" },
+    { name: "어성진", role: "교육", major: "지능형반도체공학과" },
+    { name: "김민교", role: "키트 제작", major: "전자공학과" },
+    { name: "구나연", role: "회계", major: "경영학과" },
+    { name: "조정혜", role: "회계", major: "경영학과" },
+    { name: "박미소", role: "사이트 구현", major: "소프트웨어학과" },
   ];
+
+  // 역할별 색상 매핑 (채도 낮춤)
+  const getRoleColors = (role: string) => {
+    const colorMap: Record<string, { bg: string; border: string }> = {
+      대표: {
+        bg: "bg-gradient-to-br from-blue-100 to-blue-200",
+        border: "border-blue-300",
+      },
+      교육: {
+        bg: "bg-gradient-to-br from-purple-100 to-purple-200",
+        border: "border-purple-300",
+      },
+      "키트 제작": {
+        bg: "bg-gradient-to-br from-orange-100 to-orange-200",
+        border: "border-orange-300",
+      },
+      회계: {
+        bg: "bg-gradient-to-br from-pink-100 to-pink-200",
+        border: "border-pink-300",
+      },
+      "사이트 구현": {
+        bg: "bg-gradient-to-br from-green-100 to-green-200",
+        border: "border-green-300",
+      },
+    };
+    return colorMap[role] || colorMap["대표"];
+  };
 
   return (
     <section className="py-16 px-4">
@@ -48,27 +76,30 @@ export default function Team() {
             팀원 소개
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center gap-4 p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-              >
-                {/* 프로필 이미지 플레이스홀더 */}
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-gray-600">
-                    {member.name.charAt(0)}
-                  </span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {teamMembers.map((member, index) => {
+              const colors = getRoleColors(member.role);
+              return (
+                <div
+                  key={index}
+                  className={`${colors.bg} text-black rounded-2xl p-6 shadow-md hover:shadow-lg transition-all hover:scale-105 border-2 ${colors.border}`}
+                >
+                  <div className="text-center space-y-3">
+                    <h4 className="font-bold text-xl text-gray-900">
+                      {member.name}
+                    </h4>
+                    <div className="space-y-1">
+                      <p className="text-sm font-semibold text-gray-800">
+                        {member.role}
+                      </p>
+                      {/* <p className="text-xs text-gray-700 leading-relaxed">
+                        {member.major}
+                      </p> */}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="text-center">
-                  <h4 className="font-bold text-lg text-black">
-                    {member.name}
-                  </h4>
-                  <p className="text-sm text-gray-600">{member.role}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
