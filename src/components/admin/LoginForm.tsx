@@ -41,20 +41,35 @@ export default function LoginForm() {
       } else {
         setError(data.error || "로그인에 실패했습니다.");
       }
-    } catch (err: any) {
-      console.error("로그인 에러:", err);
+    } catch (error) {
+      // error는 이제 unknown 타입으로 추론됩니다.
+      console.error("로그인 에러:", error);
 
-      // Firebase 에러 메시지 처리
-      if (err.code === "auth/invalid-credential") {
-        setError("이메일 또는 비밀번호가 올바르지 않습니다.");
-      } else if (err.code === "auth/user-not-found") {
-        setError("존재하지 않는 사용자입니다.");
-      } else if (err.code === "auth/wrong-password") {
-        setError("비밀번호가 올바르지 않습니다.");
-      } else if (err.code === "auth/invalid-email") {
-        setError("올바른 이메일 형식이 아닙니다.");
+      // 1. Error 타입인지 확인하고, code 속성을 가진 객체인지 확인합니다.
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        typeof (error as { code: unknown }).code === "string"
+      ) {
+        // error를 { code: string } 타입으로 캐스팅하여 접근합니다.
+        const firebaseError = error as { code: string };
+
+        // Firebase 에러 메시지 처리
+        if (firebaseError.code === "auth/invalid-credential") {
+          setError("이메일 또는 비밀번호가 올바르지 않습니다.");
+        } else if (firebaseError.code === "auth/user-not-found") {
+          setError("존재하지 않는 사용자입니다.");
+        } else if (firebaseError.code === "auth/wrong-password") {
+          setError("비밀번호가 올바르지 않습니다.");
+        } else if (firebaseError.code === "auth/invalid-email") {
+          setError("올바른 이메일 형식이 아닙니다.");
+        } else {
+          setError("로그인 중 오류가 발생했습니다.");
+        }
       } else {
-        setError("로그인 중 오류가 발생했습니다.");
+        // Firebase 오류 형식이 아닌 다른 종류의 오류일 경우 처리
+        setError("알 수 없는 로그인 오류가 발생했습니다.");
       }
     } finally {
       setIsLoading(false);
