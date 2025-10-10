@@ -11,7 +11,7 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "SEMI PLAT: 반도체를 만나다",
+  title: "SEMI PLAY: 반도체를 만나다",
   description: "중·고등학생을 위한 논리회로 실습 키트로 반도체 진로 탐색",
 };
 
