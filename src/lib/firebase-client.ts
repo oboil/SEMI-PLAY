@@ -1,5 +1,7 @@
+"use client";
+
+import { getAuth } from "firebase/auth";
 import { initializeApp, getApps } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,8 +13,7 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// 앱이 이미 초기화되어 있지 않은 경우에만 초기화
 const app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-export const db = getFirestore(app);
+export const auth = getAuth(app);
