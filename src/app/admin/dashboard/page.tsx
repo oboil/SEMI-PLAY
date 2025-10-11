@@ -5,14 +5,25 @@ import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase-client";
 import InquiryList from "@/components/admin/InquiryList";
+import { useAutoLogout } from "@/hooks/useAutoLogout";
 
 export default function DashboardPage() {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [renderKey, setRenderKey] = useState(0);
+
+  // 자동 로그아웃 훅 사용
+  useAutoLogout();
 
   useEffect(() => {
+    if (!auth) {
+      router.push("/admin");
+      return;
+    }
+
     console.log("=== 대시보드: 인증 상태 확인 시작 ===");
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log(
         "인증 상태 변경:",
@@ -22,6 +33,7 @@ export default function DashboardPage() {
       if (user) {
         setIsAuthenticated(true);
         setIsLoading(false);
+        setRenderKey((prev) => prev + 1);
       } else {
         console.log("인증되지 않음 - 로그인 페이지로 이동");
         router.push("/admin");
@@ -56,7 +68,7 @@ export default function DashboardPage() {
           접수된 문의를 확인하고 관리할 수 있습니다.
         </p>
       </div>
-      <InquiryList />
+      <InquiryList key={renderKey} />
     </div>
   );
 }
