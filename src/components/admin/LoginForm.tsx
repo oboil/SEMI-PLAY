@@ -37,7 +37,8 @@ export default function LoginForm() {
       const data = await response.json();
 
       if (response.ok) {
-        router.push("/admin/dashboard");
+        // router.push("/admin/dashboard");
+        window.location.href = "/admin/dashboard";
       } else {
         setError(data.error || "로그인에 실패했습니다.");
       }

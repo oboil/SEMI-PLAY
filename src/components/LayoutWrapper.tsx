@@ -16,7 +16,12 @@ export default function LayoutWrapper({
 
   // 관리자 로그인 페이지
   if (isAdminLogin) {
-    return <>{children}</>;
+    return (
+      <>
+        <Header />
+        {children}
+      </>
+    );
   }
 
   // 관리자 대시보드 (헤더만)
