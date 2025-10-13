@@ -42,14 +42,19 @@ export default function Footer() {
         </div>
 
         {/* 인스타그램 계정 영역 */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 rounded-full flex items-center justify-center">
-            <Instagram className="text-white w-5 h-5" />
+        <a
+          className="flex items-center gap-3 mb-6 "
+          href="https://www.instagram.com/semiplay_ajou/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+            <Instagram className="text-black w-5 h-5" />
           </div>
           <span className="font-medium text-base text-black">
             semiplay_ajou
           </span>
-        </div>
+        </a>
 
         {/* 저작권 정보 */}
         <div className="flex items-center justify-between">

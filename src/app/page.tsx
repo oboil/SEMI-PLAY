@@ -3,33 +3,14 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import { getSortedNews } from "@/data/news";
 
 export default function Home() {
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
-
-  // 더미 뉴스 데이터 (나중에 실제 데이터로 교체)
-  const newsData = [
-    {
-      id: 1,
-      image: "/news1.jpg",
-      date: "2024.12.15",
-      title: "남동고등학교 SEMI PLAY 체험 수업 성공적으로 진행",
-    },
-    {
-      id: 2,
-      image: "/news2.jpg",
-      date: "2024.12.10",
-      title: "반도체 교육 키트 개발 완료, 전국 학교 보급 시작",
-    },
-    {
-      id: 3,
-      image: "/news3.jpg",
-      date: "2024.12.05",
-      title: "교육부 승인 STEM 교육 프로그램으로 선정",
-    },
-  ];
+  const recentNews = getSortedNews().slice(0, 3);
 
   const scrollToSemiPlay = () => {
     const element = document.getElementById("semi-play-section");
@@ -52,21 +33,22 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentNewsIndex((prev) =>
-        prev < newsData.length - 1 ? prev + 1 : 0
-      );
-    }, 3000);
+      setCurrentNewsIndex((prev) => (prev + 1) % recentNews.length);
+    }, 4000); // 4초마다 회전
 
     return () => clearInterval(interval);
-  }, [newsData.length]);
+  }, [recentNews.length]);
 
-  const goToPrevNews = () => {
-    setCurrentNewsIndex((prev) => (prev > 0 ? prev - 1 : newsData.length - 1));
-  };
+  // // 다음/이전 뉴스로 이동
+  // const goToNextNews = () => {
+  //   setCurrentNewsIndex((prev) => (prev + 1) % recentNews.length);
+  // };
 
-  const goToNextNews = () => {
-    setCurrentNewsIndex((prev) => (prev < newsData.length - 1 ? prev + 1 : 0));
-  };
+  // const goToPrevNews = () => {
+  //   setCurrentNewsIndex(
+  //     (prev) => (prev - 1 + recentNews.length) % recentNews.length
+  //   );
+  // };
 
   return (
     <div className="min-h-screen">
@@ -198,109 +180,134 @@ export default function Home() {
       </section>
 
       {/* 소식 섹션 */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-black font-bold text-4xl md:text-5xl text-center mb-20">
             소식
           </h2>
 
-          {/* 뉴스 카드 캐러셀 */}
-          <div className="flex justify-center items-center gap-8 mb-16">
-            {/* 좌측 화살표 */}
+          {/* 3D 회전 캐러셀 */}
+          <div className="relative h-[400px] mb-8">
+            <div className="absolute inset-0 flex items-center justify-center">
+              {/* 원형 컨테이너 */}
+              <div
+                className="relative w-full max-w-5xl h-96"
+                style={{ perspective: "2000px" }}
+              >
+                {recentNews.map((news, index) => {
+                  // 현재 인덱스를 기준으로 상대적인 위치 계산
+                  const position =
+                    (index - currentNewsIndex + recentNews.length) %
+                    recentNews.length;
+
+                  // 위치별 스타일 계산
+                  let transformStyle = "";
+                  let zIndex = 0;
+                  let opacity = 0.4;
+                  let scale = 0.75;
+
+                  if (position === 0) {
+                    // 중앙 (현재 선택된 카드)
+                    transformStyle =
+                      "translateX(0%) translateZ(0px) rotateY(0deg)";
+                    zIndex = 30;
+                    opacity = 1;
+                    scale = 1;
+                  } else if (position === 1) {
+                    // 오른쪽
+                    transformStyle =
+                      "translateX(45%) translateZ(-200px) rotateY(-25deg)";
+                    zIndex = 20;
+                    opacity = 0.6;
+                    scale = 0.85;
+                  } else if (position === 2) {
+                    // 왼쪽
+                    transformStyle =
+                      "translateX(-45%) translateZ(-200px) rotateY(25deg)";
+                    zIndex = 10;
+                    opacity = 0.6;
+                    scale = 0.85;
+                  }
+
+                  return (
+                    <div
+                      key={news.id}
+                      className="absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out"
+                      style={{
+                        transform: transformStyle,
+                        transformStyle: "preserve-3d",
+                        zIndex,
+                        opacity,
+                      }}
+                    >
+                      <div
+                        className="bg-white rounded-xl shadow-2xl overflow-hidden cursor-pointer w-96 hover:shadow-3xl transition-shadow"
+                        style={{ transform: `scale(${scale})` }}
+                        onClick={() => setCurrentNewsIndex(index)}
+                      >
+                        {/* 이미지 플레이스홀더 */}
+                        <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                          <span className="text-5xl">📰</span>
+                        </div>
+
+                        {/* 뉴스 내용 */}
+                        <div className="p-6 bg-white">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-sm text-gray-500">
+                              {news.date}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-black leading-relaxed min-h-[3.5rem]">
+                            {news.title}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 좌우 화살표 버튼
             <button
               onClick={goToPrevNews}
-              className="p-4 hover:bg-gray-100 rounded-full transition-colors z-10"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-40 p-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
+              aria-label="이전 소식"
             >
-              <ChevronLeft className="w-8 h-8 text-gray-600" />
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
             </button>
 
-            {/* 캐러셀 컨테이너 - 3개 위치 고정 */}
-            <div className="relative flex items-end gap-8">
-              {/* 좌측 위치 */}
-              <div className="w-64 h-fit">
-                <div
-                  className="bg-white rounded-xl shadow-lg overflow-hidden scale-90 opacity-70 transition-all duration-1000 ease-in-out"
-                  key={`left-${currentNewsIndex}`}
-                >
-                  <div className="w-full h-32 bg-gray-500 rounded-t-xl"></div>
-                  <div className="bg-blue-200/50 p-4 rounded-b-xl min-h-[80px] flex flex-col justify-between">
-                    <p className="text-gray-600 mb-2 text-xs">
-                      {newsData[(currentNewsIndex + 2) % newsData.length].date}
-                    </p>
-                    <h3 className="text-black font-medium leading-relaxed text-sm line-clamp-2">
-                      {newsData[(currentNewsIndex + 2) % newsData.length].title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              {/* 중앙 위치 */}
-              <div className="w-96 h-fit">
-                <div
-                  className="bg-white rounded-xl shadow-lg overflow-hidden scale-100 z-20 opacity-100 transition-all duration-1000 ease-in-out"
-                  key={`center-${currentNewsIndex}`}
-                >
-                  <div className="w-full h-64 bg-gray-500 rounded-t-xl"></div>
-                  <div className="bg-blue-200/50 p-4 rounded-b-xl min-h-[80px] flex flex-col justify-between">
-                    <p className="text-gray-600 mb-2 text-sm">
-                      {newsData[currentNewsIndex].date}
-                    </p>
-                    <h3 className="text-black font-medium leading-relaxed text-lg">
-                      {newsData[currentNewsIndex].title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              {/* 우측 위치 */}
-              <div className="w-64 h-fit">
-                <div
-                  className="bg-white rounded-xl shadow-lg overflow-hidden scale-90 opacity-70 transition-all duration-1000 ease-in-out"
-                  key={`right-${currentNewsIndex}`}
-                >
-                  <div className="w-full h-32 bg-gray-500 rounded-t-xl"></div>
-                  <div className="bg-blue-200/50 p-4 rounded-b-xl min-h-[80px] flex flex-col justify-between">
-                    <p className="text-gray-600 mb-2 text-xs">
-                      {newsData[(currentNewsIndex + 1) % newsData.length].date}
-                    </p>
-                    <h3 className="text-black font-medium leading-relaxed text-sm line-clamp-2">
-                      {newsData[(currentNewsIndex + 1) % newsData.length].title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 우측 화살표 */}
             <button
               onClick={goToNextNews}
-              className="p-4 hover:bg-gray-100 rounded-full transition-colors z-10"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-40 p-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
+              aria-label="다음 소식"
             >
-              <ChevronRight className="w-8 h-8 text-gray-600" />
-            </button>
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </button> */}
           </div>
 
-          {/* 인디케이터
-          {newsData.length > 1 && (
-            <div className="flex justify-center gap-2 mb-8">
-              {newsData.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentNewsIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentNewsIndex ? "bg-blue-600" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-          )} */}
+          {/* 인디케이터 */}
+          <div className="flex justify-center gap-3 mb-12">
+            {recentNews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentNewsIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentNewsIndex
+                    ? "w-12 h-3 bg-blue-600"
+                    : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`${index + 1}번째 소식으로 이동`}
+              />
+            ))}
+          </div>
 
           {/* 더보기 버튼 */}
           <div className="flex justify-center">
             <Button
               onClick={jumpToNews}
               variant="outline"
-              className="border-4 border-black text-black font-normal text-2xl px-12 py-6 h-auto rounded-lg"
+              className="border-4 border-black text-black font-normal text-2xl px-12 py-6 h-auto rounded-lg hover:bg-gray-50"
             >
               더보기
             </Button>
