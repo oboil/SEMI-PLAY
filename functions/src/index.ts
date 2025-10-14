@@ -1,29 +1,47 @@
-import * as functions from "firebase-functions";
+import { onDocumentCreated } from "firebase-functions/v2/firestore";
 import * as admin from "firebase-admin";
 import { Resend } from "resend";
+import { defineSecret } from "firebase-functions/params";
 
+// Firebase Admin 초기화
 admin.initializeApp();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Secrets 정의
+const resendApiKey = defineSecret("RESEND_API_KEY");
+const adminEmail = defineSecret("ADMIN_EMAIL");
 
-export const sendInquiryNotification = functions
-  .region("asia-northeast3")
-  .firestore.document("inquiries/{inquiryId}")
-  .onCreate(async (snapshot, context) => {
+// Resend는 함수 내부에서 초기화
+export const sendInquiryNotification = onDocumentCreated(
+  {
+    document: "inquiries/{inquiryId}",
+    region: "asia-northeast3",
+    secrets: [resendApiKey, adminEmail],
+  },
+  async (event) => {
+    // Resend 초기화 (함수 내부에서)
+    const resend = new Resend(resendApiKey.value());
+
+    const snapshot = event.data;
+    if (!snapshot) {
+      console.log("문서 데이터가 없습니다");
+      return;
+    }
+
     const data = snapshot.data();
-    const inquiryId = context.params.inquiryId;
+    const inquiryId = event.params.inquiryId;
 
     console.log("새 문의 접수:", inquiryId);
 
-    // ✅ 환경변수에서 이메일 주소 가져오기
-    const adminEmails = process.env.ADMIN_EMAIL
-      ? process.env.ADMIN_EMAIL.split(",").map((email) => email.trim())
-      : ["fallback@example.com"]; // 기본값 (혹시 모를 에러 방지)
+    // 관리자 이메일 파싱
+    const adminEmails = adminEmail
+      .value()
+      .split(",")
+      .map((email) => email.trim());
 
     try {
       const { data: emailData, error } = await resend.emails.send({
         from: "SEMI PLAY <onboarding@resend.dev>",
-        to: adminEmails, // ✅ 환경변수에서 가져온 이메일들
+        to: adminEmails,
         subject: `[SEMI PLAY] 새로운 문의: ${data.name}`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -112,4 +130,5 @@ ${data.content}
     } catch (error) {
       console.error("❌ 이메일 발송 중 오류:", error);
     }
-  });
+  }
+);
