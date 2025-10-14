@@ -13,7 +13,7 @@ export default function Header() {
   const navItems = [
     { href: "/about", label: "SEMI PLAY" },
     { href: "/program", label: "서비스" },
-    { href: "/materials", label: "자료집" },
+    { href: "/materials", label: "자료집" }, // 교육?
     { href: "/contact", label: "문의" },
   ];
 
