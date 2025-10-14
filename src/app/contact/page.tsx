@@ -136,42 +136,42 @@ export default function Contact() {
       <Banner greeting="안녕하세요," title="SEMI PLAY 입니다." />
 
       {/* 빠른 문의 섹션 */}
-      <section className="py-9 px-3">
+      <section className="py-8 px-3">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-9 text-black">
+          <h2 className="text-xl font-bold text-center mb-8 text-black">
             빠른 문의
           </h2>
 
           {/* 문의 방법 아이콘들 */}
-          <div className="flex justify-center gap-6 mb-12">
-            <div className="w-24 h-24 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
-              <Mail className="w-12 h-12 text-[#1D1B20]" />
+          <div className="flex justify-center gap-5 mb-10">
+            <div className="w-20 h-20 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
+              <Mail className="w-10 h-10 text-[#1D1B20]" />
             </div>
-            <div className="w-24 h-24 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
-              <MessageCircle className="w-12 h-12 text-black" />
+            <div className="w-20 h-20 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
+              <MessageCircle className="w-10 h-10 text-black" />
             </div>
-            <div className="w-24 h-24 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
-              <Instagram className="w-12 h-12 text-black" />
+            <div className="w-20 h-20 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
+              <Instagram className="w-10 h-10 text-black" />
             </div>
-            <div className="w-24 h-24 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
-              <Phone className="w-12 h-12 text-black" />
+            <div className="w-20 h-20 bg-[#DAE2F9] rounded-2xl flex items-center justify-center">
+              <Phone className="w-10 h-10 text-black" />
             </div>
           </div>
 
           {/* 문의 폼 */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* 이름 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-center gap-3">
-                <User className="w-9 h-9 text-[#1D1B20]" />
-                <label className="text-lg font-medium text-black whitespace-nowrap">
+                <User className="w-8 h-8 text-[#1D1B20]" />
+                <label className="text-base font-medium text-black whitespace-nowrap">
                   이름 *
                 </label>
                 <Input
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   placeholder="이름을 입력해 주세요."
-                  className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
+                  className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
                 />
               </div>
               {errors.name && (
@@ -180,10 +180,10 @@ export default function Contact() {
             </div>
 
             {/* 소속 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-center gap-3">
-                <Building className="w-9 h-9 text-[#1D1B20]" />
-                <label className="text-lg font-medium text-black whitespace-nowrap">
+                <Building className="w-8 h-8 text-[#1D1B20]" />
+                <label className="text-base font-medium text-black whitespace-nowrap">
                   소속 *
                 </label>
                 <Input
@@ -192,7 +192,7 @@ export default function Contact() {
                     handleInputChange("organization", e.target.value)
                   }
                   placeholder="소속을 입력해 주세요."
-                  className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
+                  className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
                 />
               </div>
               {errors.organization && (
@@ -203,10 +203,10 @@ export default function Contact() {
             </div>
 
             {/* 직위 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-center gap-3">
-                <Briefcase className="w-9 h-9 text-[#1D1B20]" />
-                <label className="text-lg font-medium text-black whitespace-nowrap">
+                <Briefcase className="w-8 h-8 text-[#1D1B20]" />
+                <label className="text-base font-medium text-black whitespace-nowrap">
                   직위
                 </label>
                 <Input
@@ -215,23 +215,23 @@ export default function Contact() {
                     handleInputChange("position", e.target.value)
                   }
                   placeholder="직위를 입력해 주세요."
-                  className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
+                  className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
                 />
               </div>
             </div>
 
             {/* 전화번호 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-center gap-3">
-                <Phone className="w-9 h-9 text-[#1D1B20]" />
-                <label className="text-lg font-medium text-black whitespace-nowrap">
+                <Phone className="w-8 h-8 text-[#1D1B20]" />
+                <label className="text-base font-medium text-black whitespace-nowrap">
                   전화번호 *
                 </label>
                 <Input
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   placeholder="전화번호를 입력해 주세요."
-                  className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
+                  className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
                 />
               </div>
               {errors.phone && (
@@ -240,10 +240,10 @@ export default function Contact() {
             </div>
 
             {/* 이메일 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-center gap-3">
-                <Mail className="w-9 h-9 text-[#1D1B20]" />
-                <label className="text-lg font-medium text-black whitespace-nowrap">
+                <Mail className="w-8 h-8 text-[#1D1B20]" />
+                <label className="text-base font-medium text-black whitespace-nowrap">
                   이메일 *
                 </label>
                 <Input
@@ -251,7 +251,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   placeholder="이메일을 입력해 주세요."
-                  className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
+                  className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] h-9 flex-1"
                 />
               </div>
               {errors.email && (
@@ -260,16 +260,18 @@ export default function Contact() {
             </div>
 
             {/* 내용 */}
-            <div className="bg-[#E3E3EB] rounded-lg p-6">
+            <div className="bg-[#E3E3EB] rounded-lg p-5">
               <div className="flex items-start gap-3 mb-3">
-                <Edit className="w-9 h-9 text-[#1D1B20] mt-1" />
-                <label className="text-lg font-medium text-black">내용 *</label>
+                <Edit className="w-8 h-8 text-[#1D1B20] mt-1" />
+                <label className="text-base font-medium text-black">
+                  내용 *
+                </label>
               </div>
               <Textarea
                 value={formData.content}
                 onChange={(e) => handleInputChange("content", e.target.value)}
                 placeholder="아래의 정보를 작성해 주시면 빠른 상담이 가능합니다."
-                className="text-lg bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] min-h-[150px] resize-none"
+                className="text-base bg-transparent border-none shadow-none text-[#4C4C4C] placeholder:text-[#4C4C4C] min-h-[130px] resize-none"
               />
               {errors.content && (
                 <p className="text-red-500 text-xs mt-1">{errors.content}</p>
@@ -285,9 +287,9 @@ export default function Contact() {
                   onChange={(e) =>
                     handleInputChange("privacyAgreed", e.target.checked)
                   }
-                  className="w-6 h-6 accent-black"
+                  className="w-5 h-5 accent-black"
                 />
-                <label className="text-base underline cursor-pointer">
+                <label className="text-sm underline cursor-pointer">
                   개인정보보호정책에 동의합니다. *
                 </label>
               </div>
@@ -297,10 +299,10 @@ export default function Contact() {
             </div>
 
             {/* 제출 버튼 */}
-            <div className="flex justify-center pt-6">
+            <div className="flex justify-center pt-5">
               <Button
                 onClick={handleSubmit}
-                className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-lg px-9 py-4 h-auto rounded-lg hover:bg-[#C0D3FF]"
+                className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-base px-8 py-3 h-auto rounded-lg hover:bg-[#C0D3FF]"
                 variant="outline"
               >
                 문의하기

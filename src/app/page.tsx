@@ -34,54 +34,43 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentNewsIndex((prev) => (prev + 1) % recentNews.length);
-    }, 4000); // 4초마다 회전
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [recentNews.length]);
 
-  // // 다음/이전 뉴스로 이동
-  // const goToNextNews = () => {
-  //   setCurrentNewsIndex((prev) => (prev + 1) % recentNews.length);
-  // };
-
-  // const goToPrevNews = () => {
-  //   setCurrentNewsIndex(
-  //     (prev) => (prev - 1 + recentNews.length) % recentNews.length
-  //   );
-  // };
-
   return (
     <div className="min-h-screen">
       {/* 히어로 섹션 */}
-      <section className="relative w-full h-[850px] bg-black/80 flex flex-col justify-center items-center px-4">
-        <div className="flex flex-col items-center gap-32 max-w-5xl">
-          <div className="flex flex-col items-center gap-16 text-center">
-            <h1 className="text-white font-bold text-5xl md:text-7xl lg:text-8xl leading-tight">
+      <section className="relative w-full h-[700px] bg-black/80 flex flex-col justify-center items-center px-4">
+        <div className="flex flex-col items-center gap-24 max-w-5xl">
+          <div className="flex flex-col items-center gap-12 text-center">
+            <h1 className="text-white font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
               반도체를 손으로 만나다
             </h1>
-            <p className="text-white font-medium text-2xl md:text-3xl lg:text-4xl">
+            <p className="text-white font-medium text-xl md:text-2xl lg:text-3xl">
               중·고등학생을 위한 살아있는 논리회로
             </p>
           </div>
 
           <button onClick={scrollToSemiPlay} className="cursor-pointer">
-            <ChevronDown className="w-16 h-16 text-white animate-bounce hover:scale-110 transition-transform" />
+            <ChevronDown className="w-12 h-12 text-white animate-bounce hover:scale-110 transition-transform" />
           </button>
         </div>
       </section>
 
       {/* SEMI PLAY 소개 섹션 */}
-      <section id="semi-play-section" className="py-24 px-4">
+      <section id="semi-play-section" className="py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="flex flex-col items-center gap-16">
-            <h2 className="text-[#004A9A] font-black text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <div className="flex flex-col items-center gap-12">
+            <h2 className="text-[#004A9A] font-black text-3xl md:text-4xl lg:text-5xl leading-tight">
               SEMI PLAY는
             </h2>
-            <div className="flex flex-col items-center gap-8">
-              <p className="text-black font-medium text-2xl md:text-3xl lg:text-4xl max-w-6xl leading-relaxed">
+            <div className="flex flex-col items-center gap-6">
+              <p className="text-black font-medium text-xl md:text-2xl lg:text-3xl max-w-6xl leading-relaxed">
                 실습-탐색-기록이 연계된 진로체험형 STEM 교육 모델을 지원합니다.
               </p>
-              <p className="text-black text-lg md:text-xl">
+              <p className="text-black text-base md:text-lg">
                 * STEM: Science, technology, engineering, and mathematics
               </p>
             </div>
@@ -90,75 +79,75 @@ export default function Home() {
       </section>
 
       {/* 주요 서비스 섹션 */}
-      <section className="py-24 px-4 relative">
+      <section className="py-16 px-4 relative">
         {/* 배경 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-radial from-[#D7E2FF] to-white opacity-50"></div>
 
         <div className="relative max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
+          <div className="grid md:grid-cols-2 gap-10 mb-12">
             {/* 서비스 카드 1 */}
-            <div className="relative bg-white rounded-[42px] p-12 shadow-xl">
-              <div className="absolute -top-12 left-16">
-                <div className="w-24 h-24 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-3xl">01</span>
+            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
+              <div className="absolute -top-8 left-12">
+                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-black font-medium text-xl">01</span>
                 </div>
               </div>
-              <div className="pt-12 flex flex-col gap-4">
-                <h3 className="text-black font-bold text-3xl">
+              <div className="pt-8 flex flex-col gap-3">
+                <h3 className="text-black font-bold text-2xl">
                   교육 패키지 납품
                 </h3>
-                <p className="text-black font-medium text-xl">
+                <p className="text-black font-medium text-lg">
                   키트 + 보고서 템플릿 + 강의 PPT 제공
                 </p>
               </div>
             </div>
 
             {/* 서비스 카드 2 */}
-            <div className="relative bg-white rounded-[42px] p-12 shadow-xl">
-              <div className="absolute -top-12 left-16">
-                <div className="w-24 h-24 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-3xl">02</span>
+            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
+              <div className="absolute -top-8 left-12">
+                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-black font-medium text-xl">02</span>
                 </div>
               </div>
-              <div className="pt-12 flex flex-col gap-4">
-                <h3 className="text-black font-bold text-3xl">
+              <div className="pt-8 flex flex-col gap-3">
+                <h3 className="text-black font-bold text-2xl">
                   방문 교육 서비스
                 </h3>
-                <p className="text-black font-medium text-xl">
+                <p className="text-black font-medium text-lg">
                   강사 파견 및 전과정 운영 (학교 진로부 협업)
                 </p>
               </div>
             </div>
 
             {/* 서비스 카드 3 */}
-            <div className="relative bg-white rounded-[42px] p-12 shadow-xl">
-              <div className="absolute -top-12 left-16">
-                <div className="w-24 h-24 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-3xl">03</span>
+            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
+              <div className="absolute -top-8 left-12">
+                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-black font-medium text-xl">03</span>
                 </div>
               </div>
-              <div className="pt-12 flex flex-col gap-4">
-                <h3 className="text-black font-bold text-3xl">
+              <div className="pt-8 flex flex-col gap-3">
+                <h3 className="text-black font-bold text-2xl">
                   교사 전용 패키지
                 </h3>
-                <p className="text-black font-medium text-xl">
+                <p className="text-black font-medium text-lg">
                   교사용 설명서 및 교사 연수 + 생활기록부 작성
                 </p>
               </div>
             </div>
 
             {/* 서비스 카드 4 */}
-            <div className="relative bg-white rounded-[42px] p-12 shadow-xl">
-              <div className="absolute -top-12 left-16">
-                <div className="w-24 h-24 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-3xl">04</span>
+            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
+              <div className="absolute -top-8 left-12">
+                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-black font-medium text-xl">04</span>
                 </div>
               </div>
-              <div className="pt-12 flex flex-col gap-4">
-                <h3 className="text-black font-bold text-3xl">
+              <div className="pt-8 flex flex-col gap-3">
+                <h3 className="text-black font-bold text-2xl">
                   생기부 연계 컨설팅
                 </h3>
-                <p className="text-black font-medium text-xl">
+                <p className="text-black font-medium text-lg">
                   교육 기관 맞춤 진로부 연계 워크숍
                 </p>
               </div>
@@ -166,12 +155,12 @@ export default function Home() {
           </div>
 
           {/* 자세히 알아보기 버튼 */}
-          <div className="flex justify-center mt-20">
+          <div className="flex justify-center mt-12">
             <Button
               onClick={jumpToProgram}
               variant="outline"
               size="lg"
-              className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-2xl px-12 py-8 h-auto rounded-lg"
+              className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-lg px-10 py-6 h-auto rounded-lg"
             >
               자세히 알아보기
             </Button>
@@ -180,14 +169,14 @@ export default function Home() {
       </section>
 
       {/* 소식 섹션 */}
-      <section className="py-24 px-4 overflow-hidden">
+      <section className="py-16 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-black font-bold text-4xl md:text-5xl text-center mb-20">
+          <h2 className="text-black font-bold text-3xl md:text-4xl text-center mb-16">
             소식
           </h2>
 
           {/* 3D 회전 캐러셀 */}
-          <div className="relative h-[400px] mb-8">
+          <div className="relative h-[350px] mb-8">
             <div className="absolute inset-0 flex items-center justify-center">
               {/* 원형 컨테이너 */}
               <div
@@ -267,23 +256,6 @@ export default function Home() {
                 })}
               </div>
             </div>
-
-            {/* 좌우 화살표 버튼
-            <button
-              onClick={goToPrevNews}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-40 p-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
-              aria-label="이전 소식"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </button>
-
-            <button
-              onClick={goToNextNews}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-40 p-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
-              aria-label="다음 소식"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </button> */}
           </div>
 
           {/* 인디케이터 */}
@@ -307,7 +279,7 @@ export default function Home() {
             <Button
               onClick={jumpToNews}
               variant="outline"
-              className="border-4 border-black text-black font-normal text-2xl px-12 py-6 h-auto rounded-lg hover:bg-gray-50"
+              className="border-4 border-black text-black font-normal text-lg px-10 py-5 h-auto rounded-lg hover:bg-gray-50"
             >
               더보기
             </Button>
@@ -316,18 +288,18 @@ export default function Home() {
       </section>
 
       {/* 하단 로고 섹션 */}
-      <section className="py-16 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-center items-end gap-16 md:gap-32">
+          <div className="flex flex-col md:flex-row justify-center items-end gap-12 md:gap-24">
             {/* 로고 플레이스홀더들 */}
-            <div className="w-80 h-20 bg-gray-300 rounded"></div>
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-gray-300 rounded"></div>
-              <div className="w-52 h-20 bg-gray-300 rounded"></div>
+            <div className="w-64 h-16 bg-gray-300 rounded"></div>
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gray-300 rounded"></div>
+              <div className="w-44 h-16 bg-gray-300 rounded"></div>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-gray-300 rounded"></div>
-              <div className="w-96 h-20 bg-gray-300 rounded"></div>
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gray-300 rounded"></div>
+              <div className="w-80 h-16 bg-gray-300 rounded"></div>
             </div>
           </div>
         </div>

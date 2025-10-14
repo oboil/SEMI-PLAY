@@ -72,11 +72,12 @@ export default function Program() {
                     <div className="absolute w-[51px] h-[51px] bg-[#1A1C20] rounded-full -z-10"></div>
                   )}
                   <Settings
-                    className={`w-[35px] h-[35px] ${
-                      activeSection === "service"
-                        ? "text-white"
-                        : "text-[#425E91]"
-                    }`}
+                    className={`w-[35px] h-[35px] relative text-[#425E91]`}
+                    //   ${
+                    //   activeSection === "service"
+                    //     ? "text-black"
+                    //     : "text-[#425E91]"
+                    // }`}
                   />
                 </div>
                 <span className="font-medium text-sm text-center text-[#1A1C20]">
@@ -103,9 +104,10 @@ export default function Program() {
                     <div className="absolute w-[51px] h-[51px] bg-[#1A1C20] rounded-full -z-10"></div>
                   )}
                   <Package
-                    className={`w-[38px] h-[38px] ${
-                      activeSection === "kit" ? "text-white" : "text-[#425E91]"
-                    }`}
+                    className={`w-[38px] h-[38px]  relative text-[#425E91]`}
+                    // ${
+                    //   activeSection === "kit" ? "text-white" : "text-[#425E91]"
+                    // }`}
                   />
                 </div>
                 <span className="font-medium text-sm text-center text-black">
@@ -118,7 +120,7 @@ export default function Program() {
       </div>
 
       {/* 모바일 네비게이션 */}
-      <div className="lg:hidden sticky top-14 left-0 right-0 bg-white border-b shadow-sm z-40">
+      <div className="lg:hidden sticky top-14 left-0 right-0 bg-white border-b shadow-sm z-30">
         <div className="flex">
           <button
             onClick={() => scrollToSection("service")}
