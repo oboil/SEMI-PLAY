@@ -106,10 +106,33 @@ export default function Contact() {
   const handleSubmit = async () => {
     if (validateForm()) {
       try {
+        // 1. Firestore에 문의 데이터 저장
         await addDoc(collection(db, "inquiries"), {
           ...formData,
           createdAt: serverTimestamp(),
+          status: "pending", // 기본 상태 추가
         });
+
+        // 2. 이메일 발송 API 호출
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            organization: formData.organization,
+            position: formData.position,
+            phone: formData.phone,
+            email: formData.email,
+            content: formData.content,
+          }),
+        });
+
+        if (!response.ok) {
+          console.error("이메일 발송 실패:", await response.text());
+          // 이메일 발송 실패해도 문의는 저장되었으므로 계속 진행
+        }
 
         alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
 
@@ -120,7 +143,8 @@ export default function Contact() {
           position: "",
           phone: "",
           email: "",
-          content: "",
+          content:
+            "아래의 정보를 작성해 주시면 빠른 상담이 가능합니다.\n\n교육 대상:\n\n교육 일정:\n\n교육 인원:",
           privacyAgreed: false,
         });
       } catch (error) {
