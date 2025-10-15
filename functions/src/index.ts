@@ -40,7 +40,7 @@ export const sendInquiryNotification = onDocumentCreated(
       // 1. 관리자에게 이메일 발송
       const { data: adminEmailData, error: adminError } =
         await resend.emails.send({
-          from: "SEMI PLAY <admin@semp-play.kr>",
+          from: "SEMI PLAY <admin@semi-play.kr>",
           to: adminEmails,
           subject: `[SEMI PLAY] 새로운 문의: ${data.name}`,
           html: `
