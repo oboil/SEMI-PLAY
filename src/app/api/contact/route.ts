@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     // 1. 관리자에게 이메일 발송
     const { data: adminEmailData, error: adminError } =
       await resend.emails.send({
-        from: "SEMI PLAY <admin@semi-play.kr>",
+        from: "SEMI PLAY <noreply@semi-play.kr>",
         to: adminEmails,
         subject: `[SEMI PLAY] 새로운 문의: ${data.name}`,
         html: `
@@ -69,8 +69,8 @@ export async function POST(request: NextRequest) {
                       <a href="mailto:${
                         data.email
                       }" style="color: #003E81; text-decoration: none;">${
-          data.email
-        }</a>
+                        data.email
+                      }</a>
                     </td>
                   </tr>
                 </table>
