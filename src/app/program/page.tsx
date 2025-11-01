@@ -148,6 +148,9 @@ export default function Program() {
       {/* 컨텐츠 */}
       <main>
         <Service />
+        <div className="max-w-5xl mx-auto px-4">
+          <hr className="border-t border-gray-200" />
+        </div>
         <Kit />
       </main>
     </div>

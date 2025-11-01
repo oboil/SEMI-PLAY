@@ -16,7 +16,7 @@ export default function Service() {
           </h2>
 
           {/* 서비스 카드들 */}
-          <div className="flex flex-col gap-5 md:gap-8">
+          <div className="text-left flex flex-col gap-5 md:gap-8">
             {/* 01. 교육 패키지 납품 */}
             <div className="bg-white rounded-xl md:rounded-2xl p-5 md:p-8 flex flex-col items-start gap-3 md:gap-5 shadow-lg">
               <span className="text-lg md:text-2xl font-bold text-[#475D92] leading-tight">
