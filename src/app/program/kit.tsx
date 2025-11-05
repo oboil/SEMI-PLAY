@@ -124,8 +124,8 @@ export default function Kit() {
                   </div>
                   <div>
                     <p className="text-sm md:text-base text-black leading-relaxed">
-                      <strong>재사용 가능한 구조</strong> <br /> 모든 부품이
-                      반복적으로 사용 가능하도록 설계되었습니다.
+                      <strong>재사용 가능한 구조</strong> <br /> 모든 부품을
+                      반복적으로 사용할 수 있습니다.
                     </p>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function Kit() {
                   <div>
                     <p className="text-sm md:text-base text-black leading-relaxed">
                       <strong>쉬운 탈부착</strong> <br />
-                      누구나 쉽게 탈부착할 수 있도록 직관적으로 설계하였습니다.
+                      누구나 쉽게 탈부착할 수 있도록 설계하였습니다.
                     </p>
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function Kit() {
                   <div>
                     <p className="text-sm md:text-base text-black leading-relaxed">
                       <strong>창의적 학습</strong> <br />
-                      실패 없는 안전한 환경. 자유롭게 실험하고 배울 수 있습니다.
+                      실패 없는 안전한 환경에서 마음껏 실험할 수 있습니다.
                     </p>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ export default function Kit() {
                 초보자 친화적
               </h3>
               <p className="text-xs md:text-sm text-black leading-relaxed">
-                전자공학 지식이 없어도 쉽게 시작할 수 있습니다.
+                전자공학 지식이 없어도 <br /> 쉽게 시작할 수 있습니다.
               </p>
             </div>
 
@@ -197,7 +197,7 @@ export default function Kit() {
                 빠른 학습
               </h3>
               <p className="text-xs md:text-sm text-black leading-relaxed">
-                즉각적인 피드백으로 빠르게 원리를 이해할 수 있습니다.
+                즉각적인 피드백으로 <br /> 빠르게 원리를 이해할 수 있습니다.
               </p>
             </div>
 
@@ -210,7 +210,7 @@ export default function Kit() {
                 안전한 설계
               </h3>
               <p className="text-xs md:text-sm text-black leading-relaxed">
-                안전한 저전압으로 설계되어 걱정 없이 사용 가능합니다.
+                안전한 저전압으로 설계되어 <br /> 걱정 없이 사용 가능합니다.
               </p>
             </div>
 
@@ -223,7 +223,7 @@ export default function Kit() {
                 무한 확장
               </h3>
               <p className="text-xs md:text-sm text-black leading-relaxed">
-                추가 모듈로 더 복잡한 회로까지 구현 가능합니다.
+                모듈을 추가하여 <br /> 더 복잡한 회로도 구현할 수 있습니다.
               </p>
             </div>
           </div>

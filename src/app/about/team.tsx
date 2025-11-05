@@ -14,27 +14,32 @@ export default function Team() {
     { name: "박미소", role: "사이트 구현", major: "소프트웨어학과" },
   ];
 
-  // 역할별 색상 매핑 (채도 낮춤)
+  // 역할별 색상 매핑
   const getRoleColors = (role: string) => {
     const colorMap: Record<string, { bg: string; border: string }> = {
       대표: {
-        bg: "bg-gradient-to-br from-blue-100 to-blue-200",
+        // bg: "bg-gradient-to-br from-blue-100 to-blue-200",
+        bg: "bg-white",
         border: "border-blue-300",
       },
       교육: {
-        bg: "bg-gradient-to-br from-purple-100 to-purple-200",
+        // bg: "bg-gradient-to-br from-purple-100 to-purple-200",
+        bg: "bg-white",
         border: "border-purple-300",
       },
       "키트 제작": {
-        bg: "bg-gradient-to-br from-orange-100 to-orange-200",
+        // bg: "bg-gradient-to-br from-orange-100 to-orange-200",
+        bg: "bg-white",
         border: "border-orange-300",
       },
       회계: {
-        bg: "bg-gradient-to-br from-pink-100 to-pink-200",
+        // bg: "bg-gradient-to-br from-pink-100 to-pink-200",
+        bg: "bg-white",
         border: "border-pink-300",
       },
       "사이트 구현": {
-        bg: "bg-gradient-to-br from-green-100 to-green-200",
+        // bg: "bg-gradient-to-br from-green-100 to-green-200",
+        bg: "bg-white",
         border: "border-green-300",
       },
     };

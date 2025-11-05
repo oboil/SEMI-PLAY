@@ -9,12 +9,12 @@ export default function Footer() {
     <footer className="w-full bg-[#F3F3FA] py-8 mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 카카오톡 채널 문의 버튼 */}
-        <div className="flex items-center gap-2 mb-6">
+        {/* <div className="flex items-center gap-2 mb-6">
           <MessageCircle className="w-6 h-6 text-black" />
           <span className="font-bold text-xl md:text-2xl text-black font-sans">
             카카오톡 채널 문의하기
           </span>
-        </div>
+        </div> */}
 
         {/* 연락처 정보 */}
         <div className="mb-6">
@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-black" />
               <span className="font-medium text-base text-black">
-                전화 : 010-0000-0000
+                전화 : 010-6898-1125
               </span>
             </div>
 
@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-black" />
               <span className="font-medium text-base text-black">
-                이메일 : ajou.ac.kr
+                이메일 : seonung5973@ajou.ac.kr
               </span>
             </div>
           </div>

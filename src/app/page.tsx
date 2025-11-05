@@ -84,7 +84,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-radial from-[#D7E2FF] to-white opacity-50"></div>
 
         <div className="relative max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-10 mb-12">
+          <div className="grid md:grid-cols-2 gap-24 mb-12">
             {/* 서비스 카드 1 */}
             <div className="relative bg-white rounded-3xl p-8 shadow-xl">
               <div className="absolute -top-8 left-12">
