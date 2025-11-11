@@ -4,69 +4,14 @@
 import { Download, Play } from "lucide-react";
 import Banner from "@/components/Banner";
 import { Button } from "@/components/ui/button";
+import { videos } from "@/data/video";
+import { guides } from "@/data/guide";
 
 export default function Materials() {
-  // 강의 영상 데이터
-  const videos = [
-    {
-      id: 1,
-      title: "1강. 반도체 기초 이론",
-      description: "반도체의 기본 개념과 트랜지스터의 작동 원리를 학습합니다.",
-      youtubeId: "SIzY5LfDy5s", // 실제 유튜브 ID로 교체 필요
-      duration: "4:08",
-    },
-    {
-      id: 2,
-      title: "2강. 논리 게이트의 이해",
-      description: "AND, OR, NOT 게이트의 원리와 실습 방법을 배웁니다.",
-      youtubeId: "SIzY5LfDy5s",
-      duration: "4:08",
-    },
-    {
-      id: 3,
-      title: "3강. 회로 실습 가이드",
-      description: "SEMI PLAY 키트를 활용한 실제 회로 구성 방법을 안내합니다.",
-      youtubeId: "SIzY5LfDy5s",
-      duration: "4:08",
-    },
-  ];
-
-  // 교사 가이드 자료
-  const guides = [
-    {
-      id: 1,
-      title: "교사용 수업 운영 가이드",
-      description: "수업 진행 방법과 학생 지도 노하우를 담은 완전한 가이드북",
-      fileSize: "2.5 MB",
-      type: "PDF",
-    },
-    {
-      id: 2,
-      title: "생활기록부 작성 가이드",
-      description: "학생별 맞춤 생기부 작성 예시와 문장 템플릿 제공",
-      fileSize: "1.8 MB",
-      type: "PDF",
-    },
-    {
-      id: 3,
-      title: "수업 PPT 템플릿",
-      description: "바로 활용 가능한 수업용 프레젠테이션 자료",
-      fileSize: "15.3 MB",
-      type: "PPTX",
-    },
-    {
-      id: 4,
-      title: "학생 활동지 및 평가지",
-      description: "실습 보고서 템플릿과 평가 루브릭 포함",
-      fileSize: "3.2 MB",
-      type: "ZIP",
-    },
-  ];
-
   const handleDownload = (fileName: string) => {
     // 실제 다운로드 로직 구현 필요
     console.log(`다운로드: ${fileName}`);
-    alert("파일 다운로드 기능은 준비 중입니다.");
+    alert("자료 준비 중입니다.");
   };
 
   return (

@@ -1,4 +1,3 @@
-// src/data/news.ts
 export interface NewsItem {
   id: number;
   date: string;
