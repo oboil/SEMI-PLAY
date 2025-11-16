@@ -80,91 +80,75 @@ export default function Home() {
 
       {/* 주요 서비스 섹션 */}
       <section className="py-16 px-4 relative">
-        {/* 배경 그라데이션 */}
-        <div className="absolute inset-0 bg-gradient-radial from-[#D7E2FF] to-white opacity-50"></div>
+        <div className="mb-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+            주요 서비스
+          </h2>
 
-        <div className="relative max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-24 mb-12">
-            {/* 서비스 카드 1 */}
-            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
-              <div className="absolute -top-8 left-12">
-                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-xl">01</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                num: "01",
+                title: "교육 패키지 납품",
+                desc: "키트 + 보고서 템플릿 + PPT 슬라이드 제공",
+                gradient: "from-[#003E81] to-[#367AC4]",
+              },
+              {
+                num: "02",
+                title: "방문 교육 서비스",
+                desc: "강사 파견 및 전과정 운영 (학교 진로부 협업)",
+                gradient: "from-[#367AC4] to-[#5B9BD5]",
+              },
+              {
+                num: "03",
+                title: "교사 전용 패키지",
+                desc: "교사용 설명서 및 교사 연수 / 생기부 문장 제공",
+                gradient: "from-[#5B9BD5] to-[#7FB8E8]",
+              },
+              {
+                num: "04",
+                title: "생기부 연계 컨설팅",
+                desc: "교육청, 학교 등 고객 대상 진로부 연계 워크숍 컨설팅",
+                gradient: "from-[#7FB8E8] to-[#A3D5F5]",
+              },
+            ].map((service, idx) => (
+              <div
+                key={idx}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              >
+                <div
+                  className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${service.gradient} rounded-l-2xl`}
+                ></div>
+                <div className="flex items-start gap-4">
+                  <span
+                    className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} text-white font-bold text-xl flex items-center justify-center`}
+                  >
+                    {service.num}
+                  </span>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#003E81] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="pt-8 flex flex-col gap-3">
-                <h3 className="text-black font-bold text-2xl">
-                  교육 패키지 납품
-                </h3>
-                <p className="text-black font-medium text-lg">
-                  키트 + 보고서 템플릿 + 강의 PPT 제공
-                </p>
-              </div>
-            </div>
-
-            {/* 서비스 카드 2 */}
-            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
-              <div className="absolute -top-8 left-12">
-                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-xl">02</span>
-                </div>
-              </div>
-              <div className="pt-8 flex flex-col gap-3">
-                <h3 className="text-black font-bold text-2xl">
-                  방문 교육 서비스
-                </h3>
-                <p className="text-black font-medium text-lg">
-                  강사 파견 및 전과정 운영 (학교 진로부 협업)
-                </p>
-              </div>
-            </div>
-
-            {/* 서비스 카드 3 */}
-            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
-              <div className="absolute -top-8 left-12">
-                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-xl">03</span>
-                </div>
-              </div>
-              <div className="pt-8 flex flex-col gap-3">
-                <h3 className="text-black font-bold text-2xl">
-                  교사 전용 패키지
-                </h3>
-                <p className="text-black font-medium text-lg">
-                  교사용 설명서 및 교사 연수 + 생활기록부 작성
-                </p>
-              </div>
-            </div>
-
-            {/* 서비스 카드 4 */}
-            <div className="relative bg-white rounded-3xl p-8 shadow-xl">
-              <div className="absolute -top-8 left-12">
-                <div className="w-16 h-16 bg-gradient-to-b from-[#D7E2FF] to-[#FAD8FC] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-black font-medium text-xl">04</span>
-                </div>
-              </div>
-              <div className="pt-8 flex flex-col gap-3">
-                <h3 className="text-black font-bold text-2xl">
-                  생기부 연계 컨설팅
-                </h3>
-                <p className="text-black font-medium text-lg">
-                  교육 기관 맞춤 진로부 연계 워크숍
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
+        </div>
 
-          {/* 자세히 알아보기 버튼 */}
-          <div className="flex justify-center mt-12">
-            <Button
-              onClick={jumpToProgram}
-              variant="outline"
-              size="lg"
-              className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-lg px-10 py-6 h-auto rounded-lg"
-            >
-              자세히 알아보기
-            </Button>
-          </div>
+        {/* 자세히 알아보기 버튼 */}
+        <div className="flex justify-center mt-12">
+          <Button
+            onClick={jumpToProgram}
+            variant="outline"
+            size="lg"
+            className="bg-[#D7E2FF] border-2 border-[#294677] text-black font-medium text-lg px-10 py-6 h-auto rounded-lg"
+          >
+            자세히 알아보기
+          </Button>
         </div>
       </section>
 
