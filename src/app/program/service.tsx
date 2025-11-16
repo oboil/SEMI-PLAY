@@ -283,6 +283,81 @@ export default function Service() {
           </p>
         </div>
       </div>
+
+      {/* 생활기록부 연계 메리트 섹션 */}
+      <div className="text-center mb-10 md:mb-12 py-20">
+        <h2 className="text-2xl md:text-3xl font-bold text-black leading-tight mb-10 md:mb-12">
+          생활기록부 차별화의 핵심
+        </h2>
+
+        {/* 메인 메시지 */}
+        <div className="bg-gradient-to-br from-[#E8F2FF] to-[#F0E7FF] rounded-3xl p-8 md:p-12 mb-8 shadow-lg">
+          <p className="text-xl md:text-2xl font-bold text-black leading-relaxed mb-4">
+            대학은 실습 중심 반도체 교육 기록을 주목합니다
+          </p>
+          <p className="text-lg md:text-xl text-black leading-relaxed">
+            생활기록부에 SEMI PLAY 활동이 기재되면
+            <br />
+            <span className="font-bold text-[#004A9A]">
+              차별화된 경쟁력
+            </span>과{" "}
+            <span className="font-bold text-[#004A9A]">+α 가산점</span>의 기회를
+            얻을 수 있습니다
+          </p>
+        </div>
+
+        {/* 3가지 메리트 카드 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="bg-white border-2 border-[#004A9A] rounded-2xl p-6 shadow-md">
+            <div className="w-16 h-16 bg-[#004A9A] rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-white text-2xl font-bold">1</span>
+            </div>
+            <h3 className="text-lg md:text-xl font-bold text-black mb-3">
+              실습 기반 차별성
+            </h3>
+            <p className="text-base text-black leading-relaxed">
+              이론만 배운 학생과 달리
+              <br />
+              직접 회로를 구성한 경험은
+              <br />
+              <span className="font-bold">명확한 차별점</span>이 됩니다
+            </p>
+          </div>
+
+          <div className="bg-white border-2 border-[#6C42ED] rounded-2xl p-6 shadow-md">
+            <div className="w-16 h-16 bg-[#6C42ED] rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-white text-2xl font-bold">2</span>
+            </div>
+            <h3 className="text-lg md:text-xl font-bold text-black mb-3">
+              진로 연계성 강화
+            </h3>
+            <p className="text-base text-black leading-relaxed">
+              반도체 분야 지원 시
+              <br />
+              실질적 탐구 활동 기록은
+              <br />
+              <span className="font-bold">진정성 있는 동기</span>를 입증합니다
+            </p>
+          </div>
+
+          <div className="bg-white border-2 border-[#F59E0B] rounded-2xl p-6 shadow-md">
+            <div className="w-16 h-16 bg-[#F59E0B] rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-white text-2xl font-bold">+α</span>
+            </div>
+            <h3 className="text-lg md:text-xl font-bold text-black mb-3">
+              평가 가산점 가능성
+            </h3>
+            <p className="text-base text-black leading-relaxed">
+              대학 입시에서
+              <br />
+              실습형 STEM 교육 이수는
+              <br />
+              <span className="font-bold">추가 점수</span> 부여 가능성이
+              있습니다
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
