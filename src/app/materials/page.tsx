@@ -1,4 +1,3 @@
-// src/app/materials/page.tsx 전체 교체
 "use client";
 
 import { Download, Play } from "lucide-react";

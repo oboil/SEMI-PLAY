@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getSortedNews } from "@/data/news";
+import Instagram from "@/components/InstagramFeed";
 
 export default function News() {
   // 화면 크기별 한 행당 카드 개수
@@ -107,6 +108,9 @@ export default function News() {
             </Button>
           )}
         </div>
+      </div>
+      <div className="py-10">
+        <Instagram />
       </div>
     </section>
   );
