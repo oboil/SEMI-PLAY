@@ -120,7 +120,7 @@ export default function Program() {
       </div>
 
       {/* 모바일 네비게이션 */}
-      <div className="lg:hidden sticky top-14 left-0 right-0 bg-white border-b shadow-sm z-30">
+      <div className="lg:hidden sticky top-20 left-0 right-0 bg-white border-b shadow-sm z-30">
         <div className="flex">
           <button
             onClick={() => scrollToSection("service")}

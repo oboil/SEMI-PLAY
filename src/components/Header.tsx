@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/80">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/"
@@ -43,16 +43,16 @@ export default function Header() {
                 width={28}
                 height={28}
                 priority
-                className="h-7 w-7"
+                className="h-9 w-9"
               />
-              <span className="font-semibold tracking-tight text-lg leading-none font-sans">
+              <span className="font-semibold tracking-tight text-xl leading-none font-sans">
                 SEMI PLAY
               </span>
             </Link>
           </div>
 
           {/* 데스크톱 네비게이션 */}
-          <nav className="hidden sm:flex items-center gap-6 text-sm">
+          <nav className="hidden sm:flex items-center gap-8 text-base">
             {navItems.map((item) => (
               <Link
                 key={item.href}
