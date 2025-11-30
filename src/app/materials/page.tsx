@@ -1,16 +1,50 @@
 "use client";
 
-import { Download, Play } from "lucide-react";
+import { useState } from "react";
+import { Download, Loader2, Play } from "lucide-react";
 import Banner from "@/components/Banner";
 import { Button } from "@/components/ui/button";
 import { videos } from "@/data/video";
 import { guides } from "@/data/guide";
 
 export default function Materials() {
-  const handleDownload = (fileName: string) => {
-    // 실제 다운로드 로직 구현 필요
-    console.log(`다운로드: ${fileName}`);
-    alert("자료 준비 중입니다.");
+  const [downloadingId, setDownloadingId] = useState<number | null>(null);
+
+  const handleDownload = async (guide: (typeof guides)[0]) => {
+    try {
+      setDownloadingId(guide.id);
+
+      // API 호출하여 서명된 URL 가져오기
+      const response = await fetch(
+        `/api/download?file=${encodeURIComponent(guide.fileName)}`
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "다운로드에 실패했습니다.");
+      }
+
+      const { url } = await response.json();
+
+      // 새 창에서 다운로드
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = guide.title;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      console.log(`✓ 다운로드 시작: ${guide.title}`);
+    } catch (error) {
+      console.error("다운로드 실패:", error);
+      alert(
+        error instanceof Error
+          ? error.message
+          : "파일 다운로드 중 오류가 발생했습니다."
+      );
+    } finally {
+      setDownloadingId(null);
+    }
   };
 
   return (
@@ -100,12 +134,22 @@ export default function Materials() {
                 </div>
 
                 <Button
-                  onClick={() => handleDownload(guide.title)}
-                  className="w-full bg-[#D7E2FF] hover:bg-[#C0D3FF] text-[#003E81] font-medium border-2 border-[#003E81]"
+                  onClick={() => handleDownload(guide)}
+                  disabled={downloadingId === guide.id}
+                  className="w-full bg-[#D7E2FF] hover:bg-[#C0D3FF] text-[#003E81] font-medium border-2 border-[#003E81] disabled:opacity-50 disabled:cursor-not-allowed"
                   variant="outline"
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  다운로드
+                  {downloadingId === guide.id ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      다운로드 중...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="w-4 h-4 mr-2" />
+                      다운로드
+                    </>
+                  )}
                 </Button>
               </div>
             ))}
