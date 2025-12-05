@@ -4,24 +4,27 @@ export interface guidesItem {
   description: string;
   fileSize: string;
   type: string;
+  downloadUrl: string;
 }
 
 // 교사 가이드 자료
 export const guides = [
   {
     id: 1,
-    title: "교사용 수업 운영 가이드",
-    description: "수업 진행 방법과 학생 지도 노하우를 담은 완전한 가이드북",
-    fileSize: "2.5 MB",
+    title: "학교 강의 자료",
+    description: "반도체를 설명하는 강의 자료",
+    fileSize: "5.2 MB",
     type: "PDF",
-    fileName: "teacher-guide.pdf", // Firebase Storage에 업로드된 파일명
+    fileName: "lecture.pdf",
+    downloadUrl: "https://firebasestorage.googleapis.com/v0/b/semi-play.firebasestorage.app/o/materials%2Flecture.pdf?alt=media&token=ee333089-fa8d-459f-9373-6a8be85494dc"
   },
   {
     id: 2,
-    title: "생활기록부 작성 가이드",
-    description: "학생별 맞춤 생기부 작성 예시와 문장 템플릿 제공",
-    fileSize: "1.8 MB",
+    title: "회로 실습 학습지",
+    description: "키트와 함께 회로를 이해할 수 있는 학습지",
+    fileSize: "1.5 MB",
     type: "PDF",
-    fileName: "record-guide.pdf",
+    fileName: "worksheet.pdf",
+    downloadUrl: "https://firebasestorage.googleapis.com/v0/b/semi-play.firebasestorage.app/o/materials%2Fworksheet.pdf?alt=media&token=bc48e842-b092-47fa-9738-86b0eb9c4732"
   },
 ];

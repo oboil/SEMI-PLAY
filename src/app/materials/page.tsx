@@ -10,42 +10,26 @@ import { guides } from "@/data/guide";
 export default function Materials() {
   const [downloadingId, setDownloadingId] = useState<number | null>(null);
 
-  const handleDownload = async (guide: (typeof guides)[0]) => {
-    try {
-      setDownloadingId(guide.id);
+const handleDownload = async (guide: (typeof guides)[0]) => {
+  try {
+    setDownloadingId(guide.id);
 
-      // API 호출하여 서명된 URL 가져오기
-      const response = await fetch(
-        `/api/download?file=${encodeURIComponent(guide.fileName)}`
-      );
+    const link = document.createElement("a");
+    link.href = guide.downloadUrl;
+    link.download = guide.title;
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || "다운로드에 실패했습니다.");
-      }
-
-      const { url } = await response.json();
-
-      // 새 창에서 다운로드
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = guide.title;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      console.log(`✓ 다운로드 시작: ${guide.title}`);
-    } catch (error) {
-      console.error("다운로드 실패:", error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : "파일 다운로드 중 오류가 발생했습니다."
-      );
-    } finally {
-      setDownloadingId(null);
-    }
-  };
+    console.log(`✓ 다운로드 시작: ${guide.title}`);
+  } catch (error) {
+    console.error("다운로드 실패:", error);
+    alert("파일 다운로드 중 오류가 발생했습니다.");
+  } finally {
+    setDownloadingId(null);
+  }
+};
 
   return (
     <div className="min-h-screen">

@@ -1141,9 +1141,3 @@ curl "https://semi-play.kr/api/download?file=teacher-guide.pdf" \
 | Firestore 읽기 | < 10,000/day | Firebase Console |
 | 이메일 발송 성공률 | > 99% | Resend Dashboard |
 | 페이지 로드 시간 | < 3s | Lighthouse |
-
----
-
-**문서 끝**
-
-이 문서는 서버 운영 및 백엔드 시스템에 대한 기술적 참조 자료입니다. 정기적으로 업데이트하여 최신 상태를 유지하세요.
