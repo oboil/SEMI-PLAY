@@ -270,24 +270,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* 하단 로고 섹션 */}
-      <section className="py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-center items-end gap-12 md:gap-24">
-            {/* 로고 플레이스홀더들 */}
-            <div className="w-64 h-16 bg-gray-300 rounded"></div>
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gray-300 rounded"></div>
-              <div className="w-44 h-16 bg-gray-300 rounded"></div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gray-300 rounded"></div>
-              <div className="w-80 h-16 bg-gray-300 rounded"></div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
